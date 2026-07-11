@@ -40,7 +40,18 @@ Give this line to your coding agent:
 
 > Install the DapplePot skill from https://github.com/dapplepot/dapplepot-sdk-skill
 
-The repo ships pre-formatted skill files for **Claude Code, Codex CLI, Cursor, Windsurf, and GitHub Copilot**. Your agent picks the right one, creates the directory if needed, and drops it in. Works for any coding agent with web-fetch + file-write.
+Under the hood the agent needs to do one thing: download the file for its format to the destination path. Default to a project-level install.
+
+Base URL: `https://raw.githubusercontent.com/dapplepot/dapplepot-sdk-skill/master`
+
+| Agent            | Source path (append to base URL)             | Destination in your project             |
+| ---------------- | -------------------------------------------- | --------------------------------------- |
+| Claude Code      | `/.claude/skills/dapplepot-sdk/SKILL.md`     | `.claude/skills/dapplepot-sdk/SKILL.md` |
+| Codex CLI        | `/AGENTS.md`                                 | `AGENTS.md`                             |
+| Cursor           | `/.cursor/rules/dapplepot-sdk.mdc`           | `.cursor/rules/dapplepot-sdk.mdc`       |
+| Windsurf         | `/.windsurfrules`                            | `.windsurfrules`                        |
+| GitHub Copilot   | `/.github/copilot-instructions.md`           | `.github/copilot-instructions.md`       |
+| Anything else    | `/AGENTS.md`                                 | `AGENTS.md`                             |
 
 Once installed, prompt normally — e.g. *"add DapplePot to this project, we're using Anthropic and LangGraph"* — and the agent will produce a correct integration.
 
