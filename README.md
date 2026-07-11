@@ -2,7 +2,7 @@
 
 Drop-in agent instructions that teach any coding agent — Claude Code, Codex, Cursor, Windsurf, GitHub Copilot, and others — how to correctly integrate the [DapplePot Python SDK](https://pypi.org/project/dapplepot-sdk/) into your project.
 
-One canonical playbook, packaged in each agent's native format. Drop the file(s) for your agent into your repo, prompt the agent normally, and it produces correct DapplePot integration code the first time.
+One canonical playbook, packaged in each agent's native format. Ask your agent to install it, prompt normally, and it produces correct DapplePot integration code the first time.
 
 ## Why this exists
 
@@ -36,46 +36,17 @@ Plus an explicit **not-supported** list — OpenAI Responses/Assistants/Agents S
 
 ## Install the skill in your project
 
-Pick the section for your coding agent, copy the file(s) into the matching path in **your own repo**, then prompt normally — e.g. *"add DapplePot to this project, we're using Anthropic and LangGraph"*.
+Give this line to your coding agent:
 
-### Claude Code
+> Install the DapplePot skill from https://github.com/dapplepot/dapplepot-sdk-skill
 
-1. In your repo, create `.claude/skills/dapplepot-sdk/`.
-2. Copy [`.claude/skills/dapplepot-sdk/SKILL.md`](./.claude/skills/dapplepot-sdk/SKILL.md) from this repo into that folder.
-3. Claude Code auto-loads it whenever DapplePot comes up in a prompt.
+The repo ships pre-formatted skill files for **Claude Code, Codex CLI, Cursor, Windsurf, and GitHub Copilot**. Your agent picks the right one, creates the directory if needed, and drops it in. Works for any coding agent with web-fetch + file-write.
 
-*Optional — install globally* so DapplePot guidance is available in every project on your machine, without dropping files per-repo:
-- macOS / Linux: `~/.claude/skills/dapplepot-sdk/SKILL.md`
-- Windows: `%USERPROFILE%\.claude\skills\dapplepot-sdk\SKILL.md`
-
-### Codex CLI
-
-1. Copy [`AGENTS.md`](./AGENTS.md) from this repo to the root of your repo.
-2. If your repo already has an `AGENTS.md`, append the DapplePot section instead of overwriting.
-3. Codex reads `AGENTS.md` at the repo root by default.
-
-### Cursor
-
-1. In your repo, create `.cursor/rules/` if it doesn't exist.
-2. Copy [`.cursor/rules/dapplepot-sdk.mdc`](./.cursor/rules/dapplepot-sdk.mdc) into that folder.
-3. Cursor loads the rule on demand when your prompt mentions DapplePot (matched via the rule's `description` frontmatter).
-
-### Windsurf
-
-1. Copy [`.windsurfrules`](./.windsurfrules) to the root of your repo.
-2. If your repo already has a `.windsurfrules`, append the DapplePot section instead of overwriting.
-3. Windsurf reads `.windsurfrules` at the repo root by default.
-
-### GitHub Copilot
-
-1. In your repo, create `.github/` if it doesn't exist.
-2. Copy [`.github/copilot-instructions.md`](./.github/copilot-instructions.md) into that folder.
-3. If your repo already has a `copilot-instructions.md`, append the DapplePot section instead of overwriting.
-4. Copilot picks it up in supported IDEs (VS Code, JetBrains, Visual Studio, etc.).
+Once installed, prompt normally — e.g. *"add DapplePot to this project, we're using Anthropic and LangGraph"* — and the agent will produce a correct integration.
 
 ### Other coding agents
 
-Most modern coding agents — Aider, Amp, Continue, JetBrains AI Assistant, and newer CLI agents — read `AGENTS.md` at the repo root as their default project-instructions file. If your agent isn't in the list above, dropping [`AGENTS.md`](./AGENTS.md) at your repo root is the safest bet. For anything else, point the agent at [`SKILL.md`](./SKILL.md) as project context.
+Most modern coding agents — Aider, Amp, Continue, JetBrains AI Assistant, and newer CLI agents — read `AGENTS.md` at the repo root by default. The same install line works: your agent will fetch [`AGENTS.md`](./AGENTS.md) and drop it at your repo root.
 
 ## Contributing
 
@@ -83,6 +54,7 @@ Edit [`SKILL.md`](./SKILL.md) — it is the source of truth. Then mirror the cha
 
 ## Related
 
+- **DapplePot SDK** source: <https://github.com/dapplepot/dapplepot-sdk>
 - **DapplePot SDK** on PyPI: <https://pypi.org/project/dapplepot-sdk/>
 - **DapplePot dashboard** (get your `sdk_key` and `agent_id`): <https://app.dapplepot.com>
 - **DapplePot docs**: <https://docs.dapplepot.com>
